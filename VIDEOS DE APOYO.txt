@@ -1,0 +1,9 @@
+https://www.youtube.com/watch?v=q__9S1MQnPQ&t=1283s (Balanzas, basculas, celdas de carga, sensores de peso. Llamalas como quieras. Como funcionan?)
+
+https://www.youtube.com/watch?v=Z01gjTLE5eE (Arduino desde cero en Español - Capítulo 78 - Balanza con Celda de Carga y HX711)
+
+https://github.com/bitwiseAr/Curso-Arduino-desde-cero/tree/master/Capitulo78 (CÓDIGOS PARA ARDUINO)
+
+https://www.youtube.com/watch?v=FZnKQqBMq9Q&t=2s (Practica 2.1 Comunicación i2c entre raspberry y arduino)
+
+

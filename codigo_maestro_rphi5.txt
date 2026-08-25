@@ -1,0 +1,47 @@
+// Librerías de cabecera
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/ioctl.h>
+#include <linux/i2c-dev.h>
+// Definición de variables
+#define I2C_BUS "/dev/i2c-1" // Bus de I2C 1 en la Raspberry Pi 5
+#define I2C_ADDR 0x08 // Dirección del sensor 0x0a
+int file;
+char buffer[20];//cambiar dependiendo del valor.
+char mensaje = 'A';
+int main() {
+// Abrimos el bus del I2C
+if ((file = open(I2C_BUS, O_RDWR)) < 0) {
+perror("Error al abrir el bus I2C");
+return 1;
+}
+// Conectar el puerto I2C a la dirección 0x08
+if (ioctl(file, I2C_SLAVE, I2C_ADDR) < 0) {
+perror("Error al conectar el dispositivo");
+close(file);
+return 1;
+}
+// Envío de datos
+if (write(file, &mensaje, 1) != 1) {
+perror("Error al enviar el dato");
+close(file);
+return 1;
+}
+usleep(50000); // 500
+// Leer datos del sensor
+int bytes_read = read(file, buffer, sizeof(buffer) - 1); // Leer 11 bytes y dejar espacio
+para \0
+if (bytes_read < 0) {
+perror("Error al leer la respuesta");
+close(file);
+return 1;
+}
+// Asegurar terminación de la cadena
+buffer[bytes_read] = '\0';
+// Imprimir el valor para que lo capture la interfaz gráfica
+printf("%s", buffer);
+close(file); // Cerramos la comunicación I2C
+return 0; // Retornamos un 0 (ÉXITO)
+}
